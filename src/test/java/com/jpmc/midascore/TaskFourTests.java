@@ -23,6 +23,9 @@ public class TaskFourTests {
     @Autowired
     private FileLoader fileLoader;
 
+    @Autowired
+    private com.jpmc.midascore.repository.UserRepository userRepository;
+
     @Test
     void task_four_verifier() throws InterruptedException {
         userPopulator.populate();
@@ -32,6 +35,10 @@ public class TaskFourTests {
         }
         Thread.sleep(2000);
 
+        com.jpmc.midascore.entity.UserRecord wilbur = userRepository.findByName("wilbur");
+        if (wilbur != null) {
+            logger.info("WILBUR BALANCE IS: {}", wilbur.getBalance());
+        }
 
         logger.info("----------------------------------------------------------");
         logger.info("----------------------------------------------------------");
